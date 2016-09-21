@@ -50,7 +50,7 @@
 
         function checkServer() {
             var p = new Ping();
-            var server = document.domain //Try to get it automagically, but you can manually specify this
+            var server = document.domain //Try to get it automagically, but you can manually specify this will need Quotes
             var timeout = 2000; //Milliseconds
             var body = document.getElementsByTagName("body")[0];
             p.ping(server+":32400", function(data) {
@@ -85,22 +85,67 @@
   </head>
 
   <body onload="checkServer()" class="offline">
-
     <!-- Fixed navbar -->
     <div class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
           
           </button>
+		  
           <a href="http://YOURSERVERURLHERE.com"
           <a class="navbar-brand" href="#"><b>YOUR SERVER NAME HERE</b></a>
         </div>
-        
+		
+		<div class="navbar-header navbar-right">
+          
+          </button>
+		  
+          <a href="PAYPAL DONATE BUTTON LINK">
+          <a class="navbar-brand" href="PAYPAL DONATE BUTTON LINK"><b>Donate!</b></a>
+        </div>
+		
           </ul>
         </div><!--/.nav-collapse -->
       </div>
     </div>
     <div class="container" id="link-bar">
+		<div class="row mt centered">
+			<div class="col-lg-1 col-lg-offset-3">
+				
+				
+			</div>
+		</div><!-- /row -->
+		
+		<div class="row mt centered">
+			<div class="col-lg-4">
+				<a href="https://app.plex.tv/web/app" target="_blank">
+				<img src="assets/img/s01.png" width="180" alt="">
+				<h4>Access YOUR SERVER NAME HERE</h4>
+				<p>Access the YOUR SERVER NAME HERE library with over X Movies & X TV Shows available instantly.<p>
+					</a>
+			</div><!--/col-lg-4 -->
+
+			<div class="col-lg-4">
+			
+			
+				<a href="PLEXREQUESTS LINK HERE" target="_blank">
+				<img src="assets/img/s05.png" width="180" alt="">
+				<h4>Request</h4>
+				<p>Want to watch a Movie or TV Show but it's not currently on YOUR SERVER NAME HERE? Request it here!</p>
+</a>
+			</div><!--/col-lg-4 -->
+
+			<div class="col-lg-4">
+				<a href="SLACK WEBSITE ADDRESS" target="_blank">
+				<img src="assets/img/s07.png" width="180" alt="">
+				<h4>Join Slack Team</h4>
+				<p>Alerts, Requests, and General Chat. Join the YOUR SERVER NAME HERE Slack Team today!</p>
+</a>
+			</div><!--/col-lg-4 -->
+		</div><!-- /row -->
+	</div><!-- /container -->
+    
+	<div class="container" id="link-bar">
 		<div class="row mt centered">
 			<div class="col-lg-6 col-lg-offset-3">
 				
@@ -110,26 +155,26 @@
 		
 		<div class="row mt centered">
 			<div class="col-lg-4">
-				<a href="http://app.plex.tv/web/app" target="_top">
-				<img src="assets/img/s01.png" width="180" alt="">
-				<h4>Access YOUR SERVER NAME HERE</h4>
-				<p>Access the YOUR SERVER NAME HERE library with over X Movies & X TV Shows available instantly.<p>
-					</a>
-			</div><!--/col-lg-4 -->
-
-			<div class="col-lg-4">
-				<a href="PLEXREQUESTS LINK HERE" target="_top">
-				<img src="assets/img/s02.png" width="180" alt="">
-				<h4>Request</h4>
-				<p>Want to watch a Movie or TV Show but it's not currently on YOUR SERVER NAME HERE? Request it here!</p>
+				<a href="PLEX PY GUEST ACCESS PAGE" target="_blank">
+				<img src="assets/img/s04.png" width="180" alt="">
+				<h4>Viewing Stats</h4>
+				<p>Watched, Viewing, and other stats.</p>
 </a>
 			</div><!--/col-lg-4 -->
-
+			
 			<div class="col-lg-4">
-				<a href="PLEXEMAIL LINK HERE" target="_top">
-				<img src="assets/img/s03.png" width="180" alt="">
+				<a href="PLEXEMAIL LINK HERE" target="_blank">
+				<img src="assets/img/s02.png" width="180" alt="">
 				<h4>What's New</h4>
 				<p>See what has been recently added to YOUR SERVER NAME HERE without having to log in.</p>
+</a>
+			</div><!--/col-lg-4 -->
+			
+			<div class="col-lg-4">
+				<a href="YOURWEBSITEHERE/stats.html" target="_blank">
+				<img src="assets/img/s06.png" width="180" alt="">
+				<h4>Server Stats</h4>
+				<p>Graphical Server Information Including CPU, Network, Harddrive and Memory.</p>
 </a>
 			</div><!--/col-lg-4 -->
 		</div><!-- /row -->
@@ -152,7 +197,7 @@
 					  				
 				</div><!-- /col-lg-6 -->
 				<div class="col-lg-6">
-					<img id="server-status-img" class="img-responsive" src="assets/img/ipad-hand.png" alt="">
+					<center><img id="server-status-img" class="img-responsive" src="assets/img/ipad-hand.png" alt=""></center>
 				</div><!-- /col-lg-6 -->
 				
 			</div><!-- /row -->
