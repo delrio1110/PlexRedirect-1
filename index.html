@@ -50,7 +50,7 @@
 
         function checkServer() {
             var p = new Ping();
-            var server =  "0.0.0.0"//Try to get it automagically, but you can manually specify this will need Quotes
+            var server = document.domain //Try to get it automagically, but you can manually specify this will need Quotes
             var timeout = 500; //Milliseconds
             var body = document.getElementsByTagName("body")[0];
             p.ping(server+":32400", function(data) {
@@ -144,29 +144,18 @@
 		</div><!-- /row -->
 	</div><!-- /container -->
     
-	<div class="container" id="link-bar">
-		<div class="row mt centered">
-			<div class="col-lg-6 col-lg-offset-3">
-				
-				
-			</div>
-		</div><!-- /row -->
-		
+	<div class="container" id="link-bar">		
 		<div class="row mt centered">
 			<div class="col-lg-4">
 				<a href="PLEX PY GUEST ACCESS PAGE" target="_blank">
 				<img src="assets/img/pie-chart.svg" width="180" alt="">
 				<h4>Viewing Stats</h4>
-				<p>Watched, Viewing, and other stats.</p>
+				<p>Watched, Viewing, and other stats. Login with your Plex account</p>
 </a>
 			</div><!--/col-lg-4 -->
 			
 			<div class="col-lg-4">
-<!-- 				<a href="PLEXEMAIL LINK HERE" target="_blank">
-				<img src="assets/img/s02.png" width="180" alt="">
-				<h4>What's New</h4>
-				<p>See what has been recently added to Plex without having to log in.</p>
-</a> -->
+			<!-- Just a space, my add something here later... -->
 			</div><!--/col-lg-4 -->
 			
 			<div class="col-lg-4">

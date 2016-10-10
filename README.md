@@ -1,12 +1,14 @@
+**Forked from [PlexRedirect] (https://github.com/ITRav4/PlexRedirect)**
+
 # PlexRedirect
 a Plex landing page that redirects you to various sites.
-![alt tag](http://i.imgur.com/SbHEaLU.jpg)
-Blank spaces are where your server name goes. If you don't have a server name you can replace it with whatever you want.
+![alt tag](http://i.imgur.com/JEGChxY.png)
 
 ## Features:
 * Link to [Plex.tv](plex.tv)
 * Link to [PlexRequests](https://github.com/lokenx/plexrequests-meteor)
-* Link to [PlexEmail](https://github.com/jakewaldron/PlexEmail)
+* Link to [PlexPy](https://github.com/JonnyWong16/plexpy)
+* Link to server stats
 * Shows Plex status (online or offline) using [ping.js](https://github.com/alfg/ping.js)
 
 ## Contributors:
