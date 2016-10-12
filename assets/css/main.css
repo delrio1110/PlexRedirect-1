@@ -143,3 +143,8 @@ i {
 	font-weight: 300;
 	letter-spacing: 1px;
 }
+
+img.desaturate { 
+    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+}
