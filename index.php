@@ -2,7 +2,6 @@
 require('config.php');
 
 $show_donate = strlen($DONATE_URL.$PAYPAL_BUTTON_ID) > 0;
-$show_slack = strlen($SLACK_URL) > 0;
 
 if (strlen($PLEXPY_API)) {
 	$libraries = file_get_contents("http://$PLEXPY_URL/api/v2?apikey=$PLEXPY_API&cmd=get_libraries");
@@ -177,13 +176,13 @@ if (strlen($PLEXPY_API)) {
 
 			<!-- Slack Team -->
 			<div class="col-lg-4">
-			<?php if ($show_slack) { ?>
+			<?php if (strlen($SLACK_URL) > 0) { ?>
 				<a href="//<?=$SLACK_URL?>" target="_blank">
 				<img src="assets/img/slack.svg" width="180" alt="">
 				<h4>Slack Team</h4>
 				<p>Alerts, Requests, and General Chat. Join the Plex Slack Team today!</p>
 				</a>	
-				<?php } else { ?>
+				<?php } elseif ($SLACK_DESATURATE == True) { ?>	
 				<img src="assets/img/slack.svg" width="180" class="desaturate" alt="">
 				<h4>Slack Team, coming soon!</h4>
 			<?php } ?>
@@ -224,10 +223,15 @@ if (strlen($PLEXPY_API)) {
 
 			
 			<div class="col-lg-4">
+			<?php if (strlen($SERVER_STATS_URL) > 0) { ?>
 				<a href="//<?=$SERVER_STATS_URL?>" target="_blank">
 					<img src="assets/img/server.svg" width="180" alt="">
 					<h4>Server Stats</h4>
 					<p>Graphical Server Information Including CPU, Network, Harddrive and Memory.</p>
+					<?php } elseif ($SERVER_STATS_DESATURATE == True) { ?>
+					<img src="assets/img/server.svg" width="180" class="desaturate" alt="">
+					<h4>Server stats, coming soon!</h4>
+					<?php } ?>
 				</a>
 			</div><!--/col-lg-4 -->
 		</div><!-- /row -->

@@ -2,7 +2,7 @@
 
 # PlexRedirect
 a Plex landing page that redirects you to various sites.
-![alt tag](http://i.imgur.com/JEGChxY.png)
+![alt tag](http://i.imgur.com/0YuamEM.png)
 
 ## Features:
 * Link to [Plex.tv](plex.tv)
@@ -10,11 +10,17 @@ a Plex landing page that redirects you to various sites.
 * Link to [PlexPy](https://github.com/JonnyWong16/plexpy)
 * Link to server stats
 * Shows Plex status (online or offline) using [ping.js](https://github.com/alfg/ping.js)
+* Centralized configuration in config.php
+* Shows currently streaming to number
+* Donation via PayPal
+* Vector graphics
 
 ## Contributors:
 [@EldonMcGuinness](https://github.com/EldonMcGuinness): Added ping.js to the code so the website now checks the server status automatically.
 
 [@lienma](https://github.com/lienma): Fixed Google fonts so it now chooses between https and http.
+
+I have used some of [@gruppler](https://github.com/gruppler)'s PHP code in his version of PlexRedirect
 
 ## Installing:
 Add this to your webserver root folder. You can rename it to your server name if you would like. Access it via your IP address.

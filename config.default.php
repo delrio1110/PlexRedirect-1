@@ -17,6 +17,14 @@ $PLEX_REQUESTS = $SERVER_URL.':3000/search';
 $PLEX_URL = $PLEX_SERVER;
 
 
+
+//Slack Team URL
+$SLACK_URL = "" ;
+
+//Server Stats URL
+$SERVER_STATS_URL = "" ;
+
+
 // DONATE (leave both blank to hide Donate section)
 
 // Donate URL
