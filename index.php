@@ -1,6 +1,10 @@
 <?php
 require('config.php');
 
+$arnold = file_get_contents("http://$PLEXPY_URL/api/v2?apikey=$PLEXPY_API&cmd=arnold");
+
+$arnold_decode = json_decode($arnold);
+
 $show_donate = strlen($DONATE_URL.$PAYPAL_BUTTON_ID) > 0;
 
 if (strlen($PLEXPY_API)) {
@@ -88,8 +92,8 @@ if (strlen($PLEXPY_API)) {
 		};
 
 		function checkServer() {
-			var p = new Ping();
-			var server = "<?=$PLEX_SERVER?>";
+		var p = new Ping();
+		var server = "127.0.0.1";
       var timeout = 2000; //Milliseconds
       var body = document.getElementsByTagName("body")[0];
       var serverMsg = document.getElementById("server-status-msg");
@@ -144,17 +148,18 @@ if (strlen($PLEXPY_API)) {
 </head>
 
 <body onload="checkServer()" class="offline">
-	<!-- Fixed navbar -->
-	<div class="navbar navbar-default navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="#"><b>Plex</b></a>
-			</div>
+  <!-- Fixed navbar -->
+  <div class="navbar navbar-default navbar-fixed-top">
+  	<div class="container">
+  		<div class="navbar-header"></div>
+  		<a class="navbar-brand" href="#"><b>Plex</b></a>
+  	</div>
+  </div>
+  	<!-- /row -->
 
 
 		</div><!--/.nav-collapse -->
 	</div>
-</div>
 <div class="container" id="link-bar">
 	<div class="row mt centered">
 		<div class="col-lg-4">
@@ -176,89 +181,98 @@ if (strlen($PLEXPY_API)) {
 
 			<!-- Slack Team -->
 			<div class="col-lg-4">
-			<?php if (strlen($SLACK_URL) > 0) { ?>
+				<?php if (strlen($SLACK_URL) > 0) { ?>
 				<a href="//<?=$SLACK_URL?>" target="_blank">
-				<img src="assets/img/slack.svg" width="180" alt="">
-				<h4>Slack Team</h4>
-				<p>Alerts, Requests, and General Chat. Join the Plex Slack Team today!</p>
+					<img src="assets/img/slack.svg" width="180" alt="">
+					<h4>Slack Team</h4>
+					<p>Alerts, Requests, and General Chat. Join the Plex Slack Team today!</p>
 				</a>	
 				<?php } elseif ($SLACK_DESATURATE == True) { ?>	
 				<img src="assets/img/slack.svg" width="180" class="desaturate" alt="">
 				<h4>Slack Team, coming soon!</h4>
-			<?php } ?>
-		</div> 
-	</div><!-- /row -->
-</div><!-- /container -->
-
-<div class="container" id="link-bar">		
-	<div class="row mt centered">
-		<div class="col-lg-4">
-			<a href="//<?=$PLEXPY_URL?>" target="_blank">
-				<img src="assets/img/pie-chart.svg" width="180" alt="">
-				<h4>Viewing Stats</h4>
-				<p>Watched, Viewing, and other stats. Login with your Plex account.</p>
-			</a>
-		</div><!--/col-lg-4 -->
-
-
-		<!-- Paypal button -->
-		<div class="col-lg-4">
-			<?php if ($show_donate) { ?>
-			<?php if (strlen($PAYPAL_BUTTON_ID) > 0) { ?>
-			<form id="donate_form" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
-				<input name="cmd" type="hidden" value="_s-xclick" />
-				<input name="hosted_button_id" type="hidden" value="<?=$PAYPAL_BUTTON_ID?>" />
-				<a href="#" onclick="donate_form.submit();return false">
-					<?php } else { ?>
-					<a href="http://dereferer.org/?<?=$DONATE_URL?>" target="_blank">
-						<?php } ?>
-						<img src="assets/img/donate.svg" width="180" alt="">
-						<h4>Donate</h4>
-						<p>Say thanks and help cover the monthly costs of keeping <?=$SERVER_NAME?> running!</p>
-					</a>
-				</form>
 				<?php } ?>
-			</div>
-			<!--/col-lg-4 -->
-
-			
-			<div class="col-lg-4">
-			<?php if (strlen($SERVER_STATS_URL) > 0) { ?>
-				<a href="//<?=$SERVER_STATS_URL?>" target="_blank">
-					<img src="assets/img/server.svg" width="180" alt="">
-					<h4>Server Stats</h4>
-					<p>Graphical Server Information Including CPU, Network, Harddrive and Memory.</p>
-					<?php } elseif ($SERVER_STATS_DESATURATE == True) { ?>
-					<img src="assets/img/server.svg" width="180" class="desaturate" alt="">
-					<h4>Server stats, coming soon!</h4>
-					<?php } ?>
-				</a>
-			</div><!--/col-lg-4 -->
+			</div> 
 		</div><!-- /row -->
 	</div><!-- /container -->
-	<p>
 
-		<div id="headerwrap">
-			<div class="container">
-				<div class="row">
-					<div class="col-lg-6">
-						<h1><br/>
-							<center>Plex Status:</h1></center>
-							<center><h4 id="server-status-msg"><img src="assets/img/puff.svg">   Checking...</h4></center><br/>
-							<br/>
-							<br/>
-							<form class="form-inline" role="form">
-								<div class="form-group">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+			<h3 class="centered italic" >"<?php echo $arnold_decode->response->data ;?>" - Arnold</h3>
+			</div>
+		</div>
+	</div>
 
-								</div>
+	<div class="container" id="link-bar">		
+		<div class="row mt centered">
 
-							</div><!-- /col-lg-6 -->
-							<div class="col-lg-6">
-								<center><img id="server-status-img" class="img-responsive" src="assets/img/refresh.svg" alt=""></center>
-							</div><!-- /col-lg-6 -->
+			<div class="col-lg-4">
+				<a href="//<?=$PLEXPY_URL?>" target="_blank">
+					<img src="assets/img/pie-chart.svg" width="180" alt="">
+					<h4>Viewing stats</h4>
+					<p>Watched, Viewing, and other stats. Login with your Plex account.</p>
+				</a>
+			</div><!--/col-lg-4 -->
 
-						</div><!-- /row -->
-					</div><!-- /container -->
-				</div><!-- /headerwrap -->
-			</body>
-			</html>
+
+			<!-- Paypal button -->
+			<div class="col-lg-4">
+				<?php if ($show_donate) { ?>
+				<?php if (strlen($PAYPAL_BUTTON_ID) > 0) { ?>
+				<form id="donate_form" action="https://www.paypal.com/cgi-bin/webscr" method="post" target="_blank">
+					<input name="cmd" type="hidden" value="_s-xclick" />
+					<input name="hosted_button_id" type="hidden" value="<?=$PAYPAL_BUTTON_ID?>" />
+					<a href="#" onclick="donate_form.submit();return false">
+						<?php } else { ?>
+						<a href="http://dereferer.org/?<?=$DONATE_URL?>" target="_blank">
+							<?php } ?>
+							<img src="assets/img/donate.svg" width="180" alt="">
+							<h4>Donate</h4>
+							<p>Say thanks and help cover the monthly costs of keeping <?=$SERVER_NAME?> running!</p>
+						</a>
+					</form>
+					<?php } ?>
+				</div>
+				<!--/col-lg-4 -->
+
+
+				<div class="col-lg-4">
+					<?php if (strlen($SERVER_STATS_URL) > 0) { ?>
+					<a href="//<?=$SERVER_STATS_URL?>" target="_blank">
+						<img src="assets/img/server.svg" width="180" alt="">
+						<h4>Server Stats</h4>
+						<p>Graphical Server Information Including CPU, Network, Harddrive and Memory.</p>
+						<?php } elseif ($SERVER_STATS_DESATURATE == True) { ?>
+						<img src="assets/img/server.svg" width="180" class="desaturate" alt="">
+						<h4>Server stats, coming soon!</h4>
+						<?php } ?>
+					</a>
+				</div><!--/col-lg-4 -->
+			</div><!-- /row -->
+		</div><!-- /container -->
+		<p>
+
+			<div id="headerwrap">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-6">
+							<h1><br/>
+								<center>Plex Status:</h1></center>
+								<center><h4 id="server-status-msg"><img src="assets/img/puff.svg">   Checking...</h4></center><br/>
+								<br/>
+								<br/>
+								<form class="form-inline" role="form">
+									<div class="form-group">
+
+									</div>
+
+								</div><!-- /col-lg-6 -->
+								<div class="col-lg-6">
+									<center><img id="server-status-img" class="img-responsive" src="assets/img/refresh.svg" alt=""></center>
+								</div><!-- /col-lg-6 -->
+
+							</div><!-- /row -->
+						</div><!-- /container -->
+					</div><!-- /headerwrap -->
+				</body>
+				</html>

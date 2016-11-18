@@ -148,3 +148,7 @@ img.desaturate {
     -webkit-filter: grayscale(100%);
     filter: grayscale(100%);
 }
+
+h3.italic {
+    font-style: italic; 
+}

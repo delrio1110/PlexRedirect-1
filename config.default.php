@@ -17,12 +17,16 @@ $PLEX_REQUESTS = $SERVER_URL.':3000/search';
 $PLEX_URL = $PLEX_SERVER;
 
 
-
 //Slack Team URL
 $SLACK_URL = "" ;
+//Set to true to show a desaturated logo
+$SERVER_STATS_DESATURATE = false ;
+
 
 //Server Stats URL
 $SERVER_STATS_URL = "" ;
+//Set to true to show a desaturated logo
+$SLACK_DESATURATE = false ;
 
 
 // DONATE (leave both blank to hide Donate section)
