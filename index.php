@@ -93,7 +93,7 @@ if (strlen($PLEXPY_API)) {
 
 		function checkServer() {
 		var p = new Ping();
-		var server = "127.0.0.1";
+		var server = "$PLEX_SERVER";
       var timeout = 2000; //Milliseconds
       var body = document.getElementsByTagName("body")[0];
       var serverMsg = document.getElementById("server-status-msg");
@@ -195,7 +195,7 @@ if (strlen($PLEXPY_API)) {
 		</div><!-- /row -->
 	</div><!-- /container -->
 
-	<div class="container">
+	<div class="container" id="link-bar">
 		<div class="row">
 			<div class="col-md-12">
 			<h3 class="centered italic" >"<?php echo $arnold_decode->response->data ;?>" - Arnold</h3>
