@@ -188,7 +188,7 @@ if (strlen($PLEXPY_API)) {
 					<p>Alerts, Requests, and General Chat. Join the Plex Slack Team today!</p>
 				</a>	
 				<?php } elseif ($SLACK_DESATURATE == True) { ?>	
-				<img src="assets/img/slack.svg" width="180" class="desaturate" alt="">
+				<img src="assets/img/Slack.svg" width="180" class="desaturate" alt="">
 				<h4>Slack Team, coming soon!</h4>
 				<?php } ?>
 			</div> 
