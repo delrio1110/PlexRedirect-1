@@ -44,6 +44,14 @@ if (strlen($PLEXPY_API)) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Fullcalander -->
+
+<link rel='stylesheet' href='assets/css/fullcalendar.min.css' />
+<script src='assets/lib/jquery.min.js'></script>
+<script src='assets/lib/moment.min.js'></script>
+<script src='assets/js/fullcalendar.min.js'></script>
+<script type='text/javascript' src='assets/js/gcal.min.js'></script>
+
 	<link rel="shortcut icon" type="image/x-icon" href="plexlanding.ico" />`
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -61,6 +69,7 @@ if (strlen($PLEXPY_API)) {
 	</style>
 	<script src="assets/js/ping.js"></script>
 	<script type='text/javascript'>
+
 		HTMLElement.prototype.hasClass = function (className) {
 			if (this.classList) {
 				return this.classList.contains(className);
@@ -129,15 +138,38 @@ if (strlen($PLEXPY_API)) {
       	serverUp(stream_count);
       }
   }
-</script>
 
+
+<?php if (strlen($GOOGLE_CALENDAR_ID) && (strlen($GOOGLE_CALENDAR_API_KEY))> 0) { ?>
+	// Fullcalendar.io
+  	$(document).ready(function() {
+		$('#calendar').fullCalendar({
+			weekNumbers: 'true',
+			googleCalendarApiKey: '<?=$GOOGLE_CALENDAR_API_KEY?>',
+			events: {
+				googleCalendarId: '<?=$GOOGLE_CALENDAR_ID?>'
+			},
+			eventColor: '#E5A00C',
+			contentHeight: 'auto',
+			eventClick: function() {
+				return false;
+			}
+		});
+	});
+<?php } ?>
+</script>
 
 <title>
 	<?=ucfirst($SERVER_NAME)?>
 </title>    	
 
 <!-- Bootstrap core CSS -->
-<link href="assets/css/bootstrap.css" rel="stylesheet">
+<!-- <link href="assets/css/bootstrap.css" rel="stylesheet"> -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
 
 <!-- Custom styles -->
 <link href="assets/css/main.css" rel="stylesheet">
@@ -152,10 +184,41 @@ if (strlen($PLEXPY_API)) {
   <div class="navbar navbar-default navbar-fixed-top">
   	<div class="container">
   		<div class="navbar-header"></div>
-  		<a class="navbar-brand" href="#"><b>Plex</b></a>
+  		<a class="navbar-brand"><b>Plex</b></a>
+  		      <ul class="nav navbar-nav navbar-right">
+  		              <li><a href="#" data-toggle="modal" data-target="#calendarModal">TV Show Calendar</a></li>
   	</div>
   </div>
   	<!-- /row -->
+
+<!-- Modal -->
+<div id="calendarModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Modal Header</h4>
+      </div>
+      <div id="calendar" class="modal-body">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Now render the calendar -->
+<script type="text/javascript">
+	$('#calendarModal').on('shown.bs.modal', function () {
+   $("#calendar").fullCalendar('render');
+});
+
+</script>
+
 
 
 		</div><!--/.nav-collapse -->
@@ -213,7 +276,6 @@ if (strlen($PLEXPY_API)) {
 					<p>Watched, Viewing, and other stats. Login with your Plex account.</p>
 				</a>
 			</div><!--/col-lg-4 -->
-
 
 			<!-- Paypal button -->
 			<div class="col-lg-4">
