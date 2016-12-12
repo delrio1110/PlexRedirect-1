@@ -146,14 +146,27 @@ if (strlen($PLEXPY_API)) {
 	// Fullcalendar.io
 	$(document).ready(function() {
 		$('#calendar').fullCalendar({
+			header: {
+				left: 'prev,next today',
+				center: 'title',
+				right: 'listDay,listWeek,month'
+			},
+
+			views: {
+				listDay: { buttonText: 'list day' },
+				listWeek: { buttonText: 'list week' }
+			},
+			
 			weekNumbers: 'true',
 			googleCalendarApiKey: '<?=$GOOGLE_CALENDAR_API_KEY?>',
-			events: {
-				googleCalendarId: '<?=$GOOGLE_CALENDAR_ID?>'
-			},
+			navLinks: true,
 			eventColor: '#E5A00C',
 			contentHeight: 'auto',
 			timeFormat: 'H(:mm)', //Change to hh:mm for 12 hour clock
+
+			events: {
+				googleCalendarId: '<?=$GOOGLE_CALENDAR_ID?>'
+			},
 			eventRender: function(event, element) { //Show small tooltip with information
 				start=moment(event.start).format('H:mm');
 				end=moment(event.end).format('H:mm');
