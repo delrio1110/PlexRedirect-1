@@ -55,9 +55,9 @@ $TV_LIBS = 'TV Shows';
 
 // TV SHOW CALENDAR 
 // For more info see https://fullcalendar.io/docs/google_calendar/
-$GOOGLE_CALENDAR_API_KEY = ;
+$GOOGLE_CALENDAR_API_KEY = '';
 
-$GOOGLE_CALENDAR_ID = ;
+$GOOGLE_CALENDAR_ID = '';
 
 
 ?>

@@ -153,4 +153,4 @@ h3.italic {
     font-style: italic; 
 }
 
-.modal .modal-dialog { width: 900px; }
+.modal .modal-dialog { width: 80%; }

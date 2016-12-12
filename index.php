@@ -44,13 +44,14 @@ if (strlen($PLEXPY_API)) {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Fullcalander -->
+	<!-- Fullcalander -->
 
-<link rel='stylesheet' href='assets/css/fullcalendar.min.css' />
-<script src='assets/lib/jquery.min.js'></script>
-<script src='assets/lib/moment.min.js'></script>
-<script src='assets/js/fullcalendar.min.js'></script>
-<script type='text/javascript' src='assets/js/gcal.min.js'></script>
+<!-- Loading these now as we will need some of them in the coming scripts -->
+	<link rel='stylesheet' href='assets/css/fullcalendar.min.css' />
+	<script src='assets/lib/jquery.min.js'></script>
+	<script src='assets/lib/moment.min.js'></script>
+	<script src='assets/js/fullcalendar.min.js'></script>
+	<script type='text/javascript' src='assets/js/gcal.min.js'></script>
 
 	<link rel="shortcut icon" type="image/x-icon" href="plexlanding.ico" />`
 	<meta charset="utf-8">
@@ -101,48 +102,49 @@ if (strlen($PLEXPY_API)) {
 		};
 
 		function checkServer() {
-		var p = new Ping();
-		var server = "$PLEX_SERVER";
-      var timeout = 2000; //Milliseconds
-      var body = document.getElementsByTagName("body")[0];
-      var serverMsg = document.getElementById("server-status-msg");
-      var serverImg = document.getElementById("server-status-img");
-      var stream_count = <?=isset($STREAM_COUNT)?$STREAM_COUNT:'null'?>;
+			var p = new Ping();
+			var server = "$PLEX_SERVER";
+      		var timeout = 2000; //Milliseconds
+      		var body = document.getElementsByTagName("body")[0];
+      		var serverMsg = document.getElementById("server-status-msg");
+      		var serverImg = document.getElementById("server-status-img");
+      		var stream_count = <?=isset($STREAM_COUNT)?$STREAM_COUNT:'null'?>;
 
-      function serverUp() {
-      	serverImg.src = "assets/img/up.svg";
-      	body.addClass('online').removeClass("offline");
 
-      	if (stream_count == null) {
-      		serverMsg.innerHTML = 'Ready for streaming';
-      	} else {
-      		serverMsg.innerHTML = 'Currently streaming to <strong>'+
-      		stream_count + '</strong> user' + (stream_count == 1 ? '' : 's');
-      	}
-      }
+      		function serverUp() {
+      			serverImg.src = "assets/img/up.svg";
+      			body.addClass('online').removeClass("offline");
 
-      function serverDown() {
-      	serverMsg.innerHTML = 'Down and unreachable';
-      	serverImg.src = "assets/img/down.svg";
-      }
-
-      if (stream_count == null) {
-      	p.ping(server, function(data) {
-      		if (data < 1000) {
-      			serverUp(stream_count);
-      		} else {
-      			serverDown();
+      			if (stream_count == null) {
+      				serverMsg.innerHTML = 'Ready for streaming';
+      			} else {
+      				serverMsg.innerHTML = 'Currently streaming to <strong>'+
+      				stream_count + '</strong> user' + (stream_count == 1 ? '' : 's');
+      			}
       		}
-      	}, timeout);
-      } else {
-      	serverUp(stream_count);
-      }
-  }
+
+      		function serverDown() {
+      			serverMsg.innerHTML = 'Down and unreachable';
+      			serverImg.src = "assets/img/down.svg";
+      		}
+
+      		if (stream_count == null) {
+      			p.ping(server, function(data) {
+      				if (data < 1000) {
+      					serverUp(stream_count);
+      				} else {
+      					serverDown();
+      				}
+      			}, timeout);
+      		} else {
+      			serverUp(stream_count);
+      		}
+      	}
 
 
-<?php if (strlen($GOOGLE_CALENDAR_ID) && (strlen($GOOGLE_CALENDAR_API_KEY))> 0) { ?>
+  <?php if (strlen($GOOGLE_CALENDAR_ID) && (strlen($GOOGLE_CALENDAR_API_KEY))> 0) { ?>
 	// Fullcalendar.io
-  	$(document).ready(function() {
+	$(document).ready(function() {
 		$('#calendar').fullCalendar({
 			weekNumbers: 'true',
 			googleCalendarApiKey: '<?=$GOOGLE_CALENDAR_API_KEY?>',
@@ -151,12 +153,20 @@ if (strlen($PLEXPY_API)) {
 			},
 			eventColor: '#E5A00C',
 			contentHeight: 'auto',
-			eventClick: function() {
-				return false;
+			timeFormat: 'H(:mm)', //Change to hh:mm for 12 hour clock
+			eventRender: function(event, element) { //Show small tooltip with information
+				start=moment(event.start).format('H:mm');
+				end=moment(event.end).format('H:mm');
+				$(element).tooltip({title: start + " - " + end + "<br>" + event.title, html: true});             
+			},
+			eventClick: function(event) { //Make events not clickable, remove this function if you want to be able to click events.
+				if (event.url) {
+					return false;
+				}
 			}
 		});
 	});
-<?php } ?>
+	<?php } ?>
 </script>
 
 <title>
@@ -180,49 +190,49 @@ if (strlen($PLEXPY_API)) {
 </head>
 
 <body onload="checkServer()" class="offline">
-  <!-- Fixed navbar -->
-  <div class="navbar navbar-default navbar-fixed-top">
-  	<div class="container">
-  		<div class="navbar-header"></div>
-  		<a class="navbar-brand"><b>Plex</b></a>
-  		      <ul class="nav navbar-nav navbar-right">
-  		              <li><a href="#" data-toggle="modal" data-target="#calendarModal">TV Show Calendar</a></li>
-  	</div>
-  </div>
-  	<!-- /row -->
+	<!-- Fixed navbar -->
+	<div class="navbar navbar-default navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header"></div>
+			<a class="navbar-brand"><b>Plex</b></a>
+			<ul class="nav navbar-nav navbar-right">
+				<li><a href="#" data-toggle="modal" data-target="#calendarModal">TV Show Calendar</a></li>
+			</div>
+		</div>
+		<!-- /row -->
 
-<!-- Modal -->
-<div id="calendarModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+		<!-- Modal -->
+		<div id="calendarModal" class="modal fade" role="dialog">
+			<div class="modal-dialog">
 
-    <!-- Modal content-->
-    <div class="modal-content">
-      <div class="modal-header">
-        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <h4 class="modal-title">Modal Header</h4>
-      </div>
-      <div id="calendar" class="modal-body">
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-      </div>
-    </div>
+				<!-- Modal content-->
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal">&times;</button>
+						<h4 class="modal-title">TV Show Calendar</h4>
+					</div>
+					<div id="calendar" class="modal-body">
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+					</div>
+				</div>
 
-  </div>
+			</div>
+		</div>
+
+		<!-- Now render the calendar -->
+		<script type="text/javascript">
+			$('#calendarModal').on('shown.bs.modal', function () {
+				$("#calendar").fullCalendar('render');
+			});
+
+		</script>
+
+
+
+	</div><!--/.nav-collapse -->
 </div>
-
-<!-- Now render the calendar -->
-<script type="text/javascript">
-	$('#calendarModal').on('shown.bs.modal', function () {
-   $("#calendar").fullCalendar('render');
-});
-
-</script>
-
-
-
-		</div><!--/.nav-collapse -->
-	</div>
 <div class="container" id="link-bar">
 	<div class="row mt centered">
 		<div class="col-lg-4">
@@ -261,7 +271,7 @@ if (strlen($PLEXPY_API)) {
 	<div class="container" id="link-bar">
 		<div class="row">
 			<div class="col-md-12">
-			<h3 class="centered italic" >"<?php echo $arnold_decode->response->data ;?>" - Arnold</h3>
+				<h3 class="centered italic" >"<?php echo $arnold_decode->response->data ;?>" - Arnold</h3>
 			</div>
 		</div>
 	</div>
